@@ -1,7 +1,8 @@
 {
   "name": "we-admin-news",
   "version": "0.0.0",
-  "description": "The default blueprint for ember-cli addons.",
+  "private": true,
+  "description": "We.js admin news session to manage resources from we-plugin-news",
   "keywords": [
     "ember-addon"
   ],
