@@ -105,8 +105,6 @@ export default Ember.Controller.extend({
       .then((json) => json.term );
     },
     searchTagsTerms(term) {
-      console.log('RODO!');
-
       let url = `${ENV.API_HOST}/api/v1/term-texts?term=${term}&vocabularyName=Tags`;
       return this.get('ajax')
       .request(url)
