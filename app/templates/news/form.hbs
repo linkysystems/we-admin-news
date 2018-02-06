@@ -22,10 +22,7 @@
             </div>
             <div class="form-group">
               <label>{{t 'form-news-body'}}:</label>
-              {{tinymce-editor
-                options=editorOptions
-                value=model.record.body
-              }}
+              {{field-text-editor value=model.record.body}}
             </div>
           </fieldset>
         </div>
@@ -58,17 +55,6 @@
           </fieldset>
         </div>
       </div>
-
-      <div>
-        <button class="btn btn-primary">
-          <i class="fa fa-save"></i>
-          Salvar
-        </button>
-        <button {{action 'goTo' 'news.index'}} type="button" class="btn btn-default">
-          <i class="fa fa-step-backward"></i>
-          Notícias
-        </button>
-      </div>
     </div>
     <div class="col-md-4">
       <div class="panel panel-default">
@@ -90,22 +76,21 @@
         </div>
       </div>
       <div class="panel panel-default">
-        <div class="panel-heading">{{t 'content.form.publish.Title'}}</div>
+        <div class="panel-heading">Publicação</div>
         <div class="panel-body">
           <fieldset>
+            {{field-content-publication class="form-group" publicationDate=model.record.publishedAt isPublished=model.record.published}}
+   {{!--          <hr />
+
             <div class="form-group">
               <label>
-                {{input type="checkbox" checked=model.record.published}} {{t 'form-news-published'}}?
+                {{input type="checkbox" checked=model.record.showInLists}} Exibir nas listas?
               </label>
-              {{#if model.record.publishedAt}}
-                <div class="form-group">
-                  <strong>Publicado em:</strong> {{moment-format model.record.publishedAt "DD/MM/YYYY h:mm a"}}
-                </div>
-              {{/if}}
-            </div>
+            </div> --}}
           </fieldset>
         </div>
       </div>
+
       <div class="panel panel-default">
         <div class="panel-heading">Comentários</div>
         <div class="panel-body">
@@ -148,6 +133,30 @@
             <p class="help-block">Url limpa de acesso ao conteúdo, use um texto simples sem espaço ou acentuação. Ex /sobre</p>
           </div>
         </div>
+      </div>
+    </div>
+
+    <div class="col-md-12">
+      <div class="footer-actions">
+        <button class="btn btn-primary">
+          <i class="fa fa-save"></i>
+          Salvar
+        </button>
+        <button {{action 'goTo' 'news.index'}} type="button" class="btn btn-default">
+          <i class="fa fa-step-backward"></i>
+          Notícias
+        </button>
+        {{#if model.record.linkPermanent}}
+          <a href="{{model.record.linkPermanent}}" class="btn btn-default btn-sm" target="_blank">
+          <i class="glyphicon glyphicon-eye-open"></i>
+          {{#bs-tooltip placement="top"}}Ver{{/bs-tooltip}}
+          </a>
+        {{/if}}
+
+        <button {{action 'deleteRecord' model.record}} type="button" class="btn btn-default btn-sm">
+          <i class="glyphicon glyphicon-remove text-danger"></i>
+          {{#bs-tooltip placement="top"}}Deletar{{/bs-tooltip}}
+        </button>
       </div>
     </div>
   </div>
