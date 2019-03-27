@@ -31,6 +31,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
           disableSorting: true,
           disableFiltering: true,
           title: i18n.t('form-content-published'),
+          component: 'mt-published',
           className: 'mt-c-published'
         },
         {
